@@ -1,10 +1,10 @@
-import Stripe from 'stripe';
 import { stripe } from '@/utils/stripe';
 import {
   upsertProductRecord,
   upsertPriceRecord,
   manageSubscriptionStatusChange
 } from '@/utils/supabase-admin';
+import Stripe from 'stripe';
 
 const relevantEvents = new Set([
   'product.created',
@@ -21,6 +21,7 @@ export async function POST(req: Request) {
   const body = await req.text();
   const sig = req.headers.get('stripe-signature') as string;
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+  console.log(webhookSecret);
   let event: Stripe.Event;
 
   try {

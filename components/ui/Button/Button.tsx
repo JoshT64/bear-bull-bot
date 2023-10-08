@@ -1,15 +1,13 @@
 'use client';
 
+import styles from './Button.module.css';
+import LoadingDots from '@/components/ui/LoadingDots';
 import cn from 'classnames';
 import React, { forwardRef, useRef, ButtonHTMLAttributes } from 'react';
 import { mergeRefs } from 'react-merge-refs';
 
-import LoadingDots from '@/components/ui/LoadingDots';
-
-import styles from './Button.module.css';
-
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'slim' | 'flat';
+  variant?: 'slim' | 'flat' | 'subscribe';
   active?: boolean;
   width?: number;
   loading?: boolean;
@@ -31,14 +29,17 @@ const Button = forwardRef<HTMLButtonElement, Props>((props, buttonRef) => {
   } = props;
   const ref = useRef(null);
   const rootClassName = cn(
-    styles.root,
     {
+      [styles.root]: variant !== 'subscribe',
       [styles.slim]: variant === 'slim',
+      [styles.subscribe]: variant === 'subscribe',
       [styles.loading]: loading,
       [styles.disabled]: disabled
     },
     className
   );
+
+  console.log(variant);
   return (
     <Component
       aria-pressed={active}
@@ -54,7 +55,7 @@ const Button = forwardRef<HTMLButtonElement, Props>((props, buttonRef) => {
     >
       {children}
       {loading && (
-        <i className="flex pl-2 m-0">
+        <i className="pl-2 m-0">
           <LoadingDots />
         </i>
       )}

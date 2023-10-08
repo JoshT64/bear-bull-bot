@@ -44,7 +44,7 @@ export default async function Account() {
     const { error } = await supabase
       .from('users')
       .update({ full_name: newName })
-      .eq('id', user?.id);
+      .eq('id', user?.id as string);
     if (error) {
       console.log(error);
     }

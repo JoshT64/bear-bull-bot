@@ -90,7 +90,6 @@ export default function Pricing({
             .
           </p>
         </div>
-        <LogoCloud />
       </section>
     );
 
@@ -103,8 +102,7 @@ export default function Pricing({
               Pricing Plans
             </h1>
             <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-              Start building for free, then add a site plan to go live. Account
-              plans unlock additional features.
+              Bear Bull Bot
             </p>
             <div className="relative flex self-center mt-12 border rounded-lg bg-zinc-900 border-zinc-800">
               <div className="border border-pink-500 border-opacity-50 divide-y rounded-lg shadow-sm bg-zinc-900 divide-zinc-600">
@@ -139,12 +137,12 @@ export default function Pricing({
                       </p>
                       <p className="mt-4 text-zinc-300">{price.description}</p>
                       <Button
-                        variant="slim"
+                        variant="subscribe"
                         type="button"
-                        disabled={false}
+                        disabled={!session}
                         loading={priceIdLoading === price.id}
                         onClick={() => handleCheckout(price)}
-                        className="block w-full py-2 mt-12 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 "
+                        className="block w-full py-2 mt-8 text-sm font-semibold text-center rounded-md bg-gray-100  text-black  hover:bg-zinc-800"
                       >
                         {products[0].name ===
                         subscription?.prices?.products?.name
@@ -157,7 +155,6 @@ export default function Pricing({
               })}
             </div>
           </div>
-          <LogoCloud />
         </div>
       </section>
     );
@@ -167,11 +164,10 @@ export default function Pricing({
       <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
         <div className="sm:flex sm:flex-col sm:align-center">
           <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
-            Pricing Plans
+            Bear Bull Bot
           </h1>
           <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-            Start building for free, then add a site plan to go live. Account
-            plans unlock additional features.
+            Stop trading with emotions and start trading with data
           </p>
           <div className="relative self-center mt-6 bg-zinc-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800">
             {intervals.includes('month') && (
@@ -239,12 +235,12 @@ export default function Pricing({
                     </span>
                   </p>
                   <Button
-                    variant="slim"
+                    variant="subscribe"
                     type="button"
                     disabled={!session}
                     loading={priceIdLoading === price.id}
                     onClick={() => handleCheckout(price)}
-                    className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900"
+                    className="block w-full py-2 mt-8 text-sm font-semibold text-center rounded-md bg-gray-100  text-black  hover:bg-zinc-800"
                   >
                     {subscription ? 'Manage' : 'Subscribe'}
                   </Button>
@@ -253,65 +249,7 @@ export default function Pricing({
             );
           })}
         </div>
-        <LogoCloud />
       </div>
     </section>
-  );
-}
-
-function LogoCloud() {
-  return (
-    <div>
-      <p className="mt-24 text-xs uppercase text-zinc-400 text-center font-bold tracking-[0.3em]">
-        Brought to you by
-      </p>
-      <div className="flex flex-col items-center my-12 space-y-4 sm:mt-8 sm:space-y-0 md:mx-auto md:max-w-2xl sm:grid sm:gap-6 sm:grid-cols-5">
-        <div className="flex items-center justify-start">
-          <a href="https://nextjs.org" aria-label="Next.js Link">
-            <img
-              src="/nextjs.svg"
-              alt="Next.js Logo"
-              className="h-12 text-white"
-            />
-          </a>
-        </div>
-        <div className="flex items-center justify-start">
-          <a href="https://vercel.com" aria-label="Vercel.com Link">
-            <img
-              src="/vercel.svg"
-              alt="Vercel.com Logo"
-              className="h-6 text-white"
-            />
-          </a>
-        </div>
-        <div className="flex items-center justify-start">
-          <a href="https://stripe.com" aria-label="stripe.com Link">
-            <img
-              src="/stripe.svg"
-              alt="stripe.com Logo"
-              className="h-12 text-white"
-            />
-          </a>
-        </div>
-        <div className="flex items-center justify-start">
-          <a href="https://supabase.io" aria-label="supabase.io Link">
-            <img
-              src="/supabase.svg"
-              alt="supabase.io Logo"
-              className="h-10 text-white"
-            />
-          </a>
-        </div>
-        <div className="flex items-center justify-start">
-          <a href="https://github.com" aria-label="github.com Link">
-            <img
-              src="/github.svg"
-              alt="github.com Logo"
-              className="h-8 text-white"
-            />
-          </a>
-        </div>
-      </div>
-    </div>
   );
 }

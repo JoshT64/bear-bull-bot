@@ -1,0 +1,33 @@
+.c-dropdown {
+  position: absolute;
+  display: inline-block;
+  top: 4rem;
+  right: 6rem;
+}
+
+.link {
+  @apply inline-flex cursor-pointer items-center rounded-md p-1 font-medium leading-6 text-zinc-200 transition duration-75 ease-in-out;
+}
+
+.c-dropdown-list {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    padding: 12px 16px;
+    cursor: pointer;
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+}
+
+.c-dropdown-item {
+}
