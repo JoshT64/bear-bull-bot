@@ -7,12 +7,12 @@ import 'styles/main.css';
 export const dynamic = 'force-dynamic';
 
 const meta = {
-  title: 'Next.js Subscription Starter',
-  description: 'Brought to you by Vercel, Stripe, and Supabase.',
+  title: 'Bear Bull Bot',
+  description: 'Stop trading with emotions, and trade with data.',
   cardImage: '/og.png',
   robots: 'follow, index',
   favicon: '/favicon.ico',
-  url: 'https://subscription-starter.vercel.app',
+  url: 'https://bear-bull-bot.vercel.app/',
   type: 'website'
 };
 

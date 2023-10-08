@@ -38,7 +38,7 @@ def find_divergences(price, rsi):
     return bearish_divs, bullish_divs, bearish_hidden_divs, bullish_hidden_divs
 
 def stock_analysis(ticker, last_processed_date=None):
-    df = yf.download(ticker.strip(), start="2022-01-01", end=pd.to_datetime('today').date().strftime('%Y-%m-%d'), interval='1d', progress=False)
+    df = yf.download(ticker.strip(), start="2023-10-03", end=pd.to_datetime('today').date().strftime('%Y-%m-%d'), interval='15m', progress=False)
   
     last_date_processed = df.index[0].date()
 
@@ -50,7 +50,7 @@ def stock_analysis(ticker, last_processed_date=None):
     df['RSI'] = compute_rsi(df)
     bearish_divs, bullish_divs, bearish_hidden_divs, bullish_hidden_divs = find_divergences(df['Close'].values, df['RSI'].values)
 
-    initial_balance = 1000
+    initial_balance = 10000
     shares = 0
     balance = initial_balance
     portfolio = []

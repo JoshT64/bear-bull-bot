@@ -64,7 +64,7 @@ export default async function Account() {
   };
 
   return (
-    <section className="mb-32 bg-black">
+    <section className="mb-32 bg-black animate-in">
       <div className="max-w-6xl px-4 py-8 mx-auto sm:px-6 sm:pt-24 lg:px-8">
         <div className="sm:align-center sm:flex sm:flex-col">
           <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
@@ -100,7 +100,7 @@ export default async function Account() {
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
               <p className="pb-4 sm:pb-0">64 characters maximum</p>
               <Button
-                variant="slim"
+                variant="flat"
                 type="submit"
                 form="nameForm"
                 disabled={true}
@@ -133,7 +133,7 @@ export default async function Account() {
                 We will email you to verify the change.
               </p>
               <Button
-                variant="slim"
+                variant="flat"
                 type="submit"
                 form="emailForm"
                 disabled={true}

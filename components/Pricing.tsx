@@ -74,11 +74,11 @@ export default function Pricing({
 
   if (!products.length)
     return (
-      <section className="bg-black">
+      <section className="bg-black animate-in">
         <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
           <div className="sm:flex sm:flex-col sm:align-center"></div>
           <p className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
-            No subscription pricing plans found. Create them in your{' '}
+            No subscription data found{' '}
             <a
               className="text-pink-500 underline"
               href="https://dashboard.stripe.com/products"
@@ -95,7 +95,7 @@ export default function Pricing({
 
   if (products.length === 1)
     return (
-      <section className="bg-black">
+      <section className="bg-black animate-in">
         <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
           <div className="sm:flex sm:flex-col sm:align-center">
             <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
@@ -160,7 +160,7 @@ export default function Pricing({
     );
 
   return (
-    <section className="bg-black">
+    <section className="bg-black animate-in">
       <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
         <div className="sm:flex sm:flex-col sm:align-center">
           <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">

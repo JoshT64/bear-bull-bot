@@ -4,6 +4,7 @@ import s from './Navbar.module.css';
 import SignOutButton from './SignOutButton';
 import { createServerSupabaseClient } from '@/app/supabase-server';
 import Logo from '@/components/icons/Logo';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Navbar() {
@@ -21,7 +22,13 @@ export default async function Navbar() {
         <div className="relative flex flex-row justify-between py-4 align-center md:py-6">
           <div className="flex items-center flex-1">
             <Link href="/" className={s.logo} aria-label="Logo">
-              <Logo />
+              <Image
+                src="/bear-bull-bot-logo-white.png"
+                alt="bear bull bot logo"
+                width={48}
+                height={48}
+                priority={true}
+              />
             </Link>
             <nav className="hidden ml-6 space-x-2 lg:block">
               <Link href="/" className={s.link}>
@@ -34,7 +41,7 @@ export default async function Navbar() {
               )}
             </nav>
           </div>
-          <div className="flex justify-end flex-1 space-x-8">
+          <div className="flex justify-end flex-1 space-x-8 place-self-center">
             {user ? (
               <AvatarDropdown src={user?.user_metadata.picture} />
             ) : (

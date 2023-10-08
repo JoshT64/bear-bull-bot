@@ -31,10 +31,9 @@ const Button = forwardRef<HTMLButtonElement, Props>((props, buttonRef) => {
   const rootClassName = cn(
     {
       [styles.root]: variant !== 'subscribe',
-      [styles.slim]: variant === 'slim',
-      [styles.subscribe]: variant === 'subscribe',
       [styles.loading]: loading,
-      [styles.disabled]: disabled
+      [styles.disabled]: disabled,
+      [styles[variant]]: variant
     },
     className
   );

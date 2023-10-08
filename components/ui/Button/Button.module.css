@@ -1,7 +1,3 @@
-.root {
-  @apply inline-flex cursor-pointer items-center justify-center  border border-transparent py-4 pl-2 pr-14 text-center font-semibold uppercase leading-6 text-zinc-800 shadow-sm transition duration-150 ease-in-out;
-}
-
 .root:hover {
   @apply text-white;
 }
@@ -27,6 +23,22 @@
 
 .subscribe:hover {
   @apply text-white;
+}
+
+.flat {
+  @apply transform-none gap-3 rounded-sm border-0 px-10 py-2 normal-case;
+}
+
+.disabled.flat {
+  @apply transform-none cursor-not-allowed gap-3 rounded-sm border-0 border-zinc-600 bg-zinc-700 px-10 py-2 normal-case text-zinc-400;
+  filter: grayscale(1);
+  -webkit-transform: translateZ(0);
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+}
+
+.root {
+  @apply inline-flex cursor-pointer items-center justify-center  border border-transparent py-4 pl-2 pr-14 text-center font-semibold uppercase leading-6 text-zinc-800 shadow-sm transition duration-150 ease-in-out;
 }
 
 .disabled,
