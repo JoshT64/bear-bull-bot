@@ -142,7 +142,7 @@ df['RSI'] = compute_rsi(df)
 bearish_divs, bullish_divs, bearish_hidden_divs, bullish_hidden_divs = find_divergences(df['Close'].values, df['RSI'].values)
 
 # Mock portfolio logic
-initial_balance = 1000
+initial_balance = 10000
 shares = 0
 balance = initial_balance
 portfolio = []
