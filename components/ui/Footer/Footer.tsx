@@ -11,7 +11,7 @@ export default function Footer() {
             href="/"
             className="flex items-center flex-initial font-bold md:mr-24"
           >
-            <span className="mr-2 border rounded-full border-zinc-700">
+            <span className="mr-2 border-zinc-700">
               <Logo />
             </span>
             <span>Bear Bull Bot</span>

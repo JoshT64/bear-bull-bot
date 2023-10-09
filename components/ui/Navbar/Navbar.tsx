@@ -22,13 +22,7 @@ export default async function Navbar() {
         <div className="relative flex flex-row justify-between py-4 align-center md:py-6">
           <div className="flex items-center flex-1">
             <Link href="/" className={s.logo} aria-label="Logo">
-              <Image
-                src="/bear-bull-bot-logo-white.png"
-                alt="bear bull bot logo"
-                width={48}
-                height={48}
-                priority={true}
-              />
+              <Logo />
             </Link>
             <nav className="hidden ml-6 space-x-2 lg:block">
               <Link href="/" className={s.link}>
