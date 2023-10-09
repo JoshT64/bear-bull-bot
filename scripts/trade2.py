@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 
 def compute_rsi(data, window=14):
-    delta = data['Close'].diff()
+    delta = data['Open'].diff()
     gain = (delta.where(delta > 0, 0)).fillna(0)
     loss = (-delta.where(delta < 0, 0)).fillna(0)
 
@@ -18,6 +18,7 @@ def compute_rsi(data, window=14):
     rs = avg_gain / avg_loss
     rsi = 100 - (100 / (1 + rs))
     return rsi
+
 
 def find_divergences(price, rsi):
     bearish_divs = []
@@ -37,9 +38,11 @@ def find_divergences(price, rsi):
 
     return bearish_divs, bullish_divs, bearish_hidden_divs, bullish_hidden_divs
 
+
 def stock_analysis(ticker, last_processed_date=None):
-    df = yf.download(ticker.strip(), start="2023-10-03", end=pd.to_datetime('today').date().strftime('%Y-%m-%d'), interval='15m', progress=False)
-  
+    df = yf.download(ticker.strip(), start="2023-10-03", end=pd.to_datetime(
+        'today').date().strftime('%Y-%m-%d'), interval='15m', progress=False)
+
     last_date_processed = df.index[0].date()
 
     if last_processed_date:
@@ -48,7 +51,8 @@ def stock_analysis(ticker, last_processed_date=None):
         return last_processed_date, []
 
     df['RSI'] = compute_rsi(df)
-    bearish_divs, bullish_divs, bearish_hidden_divs, bullish_hidden_divs = find_divergences(df['Close'].values, df['RSI'].values)
+    bearish_divs, bullish_divs, bearish_hidden_divs, bullish_hidden_divs = find_divergences(
+        df['Open'].values, df['RSI'].values)
 
     initial_balance = 10000
     shares = 0
@@ -67,17 +71,18 @@ def stock_analysis(ticker, last_processed_date=None):
 
     for i, row in df.iterrows():
         current_date = i.date()
-        current_price = row['Close']
+        current_price = row['Open']
         current_index = df.index.get_loc(i)
 
         if last_date_processed != current_date:
             action_performed_today = False
             last_date_processed = current_date
-        
+
         if (current_index in bullish_divs or current_index in bullish_hidden_divs) and shares > 0 and not action_performed_today and last_action != "sell":
             trade_value = shares * current_price
             gain_loss = trade_value - (shares * last_trade_price)
-            percentage_gain_loss = (gain_loss / (shares * last_trade_price)) * 100
+            percentage_gain_loss = (
+                gain_loss / (shares * last_trade_price)) * 100
             balance += trade_value
 
             trade_identifier = (ticker, 'sell', i.date())
@@ -102,29 +107,33 @@ def stock_analysis(ticker, last_processed_date=None):
 
             action_performed_today = True
             last_action = "buy"
-        
+
         portfolio_value = balance + (shares * current_price)
         portfolio.append(portfolio_value)
 
     if shares > 0:
         trade_value = shares * current_price
         gain_loss = trade_value - (shares * last_trade_price)
-        messages.append(f"Final holding on {df.index[-1].date()}. {ticker} Shares: {shares:.0f} @ ${current_price:.2f}. Gain/Loss on Holding: ${gain_loss:.2f}. Portfolio Value: ${(balance + shares * current_price):.2f}.")
+        messages.append(
+            f"Final holding on {df.index[-1].date()}. {ticker} Shares: {shares:.0f} @ ${current_price:.2f}. Gain/Loss on Holding: ${gain_loss:.2f}. Portfolio Value: ${(balance + shares * current_price):.2f}.")
 
     messages.append(f"Initial Balance for {ticker}: ${initial_balance}")
     messages.append(f"Final Balance for {ticker}: ${portfolio[-1]}")
-    messages.append(f"Return for {ticker}: {(portfolio[-1] - initial_balance) / initial_balance * 100:.2f}%")
+    messages.append(
+        f"Return for {ticker}: {(portfolio[-1] - initial_balance) / initial_balance * 100:.2f}%")
 
     return df.index[-1], messages, ticker
+
 
 @app.route('/analyze/<ticker>', methods=['GET'])
 def analyze_stock(ticker):
     last_processed_date = request.args.get('last_processed_date', None)
-    
+
     if last_processed_date:
         last_processed_date = pd.to_datetime(last_processed_date)
-    
-    last_processed_date, messages, ticker = stock_analysis(ticker, last_processed_date)
+
+    last_processed_date, messages, ticker = stock_analysis(
+        ticker, last_processed_date)
     response = {
         "last_processed_date": last_processed_date.strftime('%Y-%m-%d'),
         "messages": messages,
@@ -132,14 +141,17 @@ def analyze_stock(ticker):
     }
     return jsonify(response)
 
+
 if __name__ == '__main__':
     app.run(debug=True)
 
 # Fetch data and compute RSI
 ticker = "SPY"
-df = yf.download(ticker.strip(), start="2022-01-01", end=pd.to_datetime('today').date().strftime('%Y-%m-%d'))
+df = yf.download(ticker.strip(), start="2022-01-01",
+                 end=pd.to_datetime('today').date().strftime('%Y-%m-%d'))
 df['RSI'] = compute_rsi(df)
-bearish_divs, bullish_divs, bearish_hidden_divs, bullish_hidden_divs = find_divergences(df['Close'].values, df['RSI'].values)
+bearish_divs, bullish_divs, bearish_hidden_divs, bullish_hidden_divs = find_divergences(
+    df['Open'].values, df['RSI'].values)
 
 # Mock portfolio logic
 initial_balance = 10000
@@ -153,9 +165,9 @@ sell_prices = []
 last_trade_price = 0
 
 for i, row in df.iterrows():
-    current_price = row['Close']
+    current_price = row['Open']
     current_index = df.index.get_loc(i)
-    
+
     # Conditions for selling
     if (current_index in bullish_divs or current_index in bullish_hidden_divs) and shares > 0:
         trade_value = shares * current_price
@@ -185,4 +197,5 @@ if shares > 0:
 
 print(f"Initial Balance: ${initial_balance}")
 print(f"Final Balance: ${portfolio[-1]}")
-print(f"Return: {(portfolio[-1] - initial_balance) / initial_balance * 100:.2f}%")
+print(
+    f"Return: {(portfolio[-1] - initial_balance) / initial_balance * 100:.2f}%")
