@@ -1,10 +1,7 @@
-import { Avatar, AvatarDropdown } from '../Avatar';
-import { Dropdown } from '../Dropdown';
+import { AvatarDropdown } from '../Avatar';
 import s from './Navbar.module.css';
-import SignOutButton from './SignOutButton';
 import { createServerSupabaseClient } from '@/app/supabase-server';
 import Logo from '@/components/icons/Logo';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Navbar() {
@@ -37,7 +34,11 @@ export default async function Navbar() {
           </div>
           <div className="flex justify-end flex-1 space-x-8 place-self-center">
             {user ? (
-              <AvatarDropdown src={user?.user_metadata.picture} />
+              <AvatarDropdown
+                src={
+                  user?.user_metadata.picture || user?.user_metadata.avatar_url
+                }
+              />
             ) : (
               <Link href="/signin" className={s.link}>
                 Sign in

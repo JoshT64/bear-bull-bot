@@ -10,7 +10,6 @@ import SignOutButton from '../Navbar/SignOutButton';
 // @ts-ignore
 import styles from './Avatar.modules.css';
 import classNames from 'classnames';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState, useRef, useEffect } from 'react';
 
@@ -33,6 +32,20 @@ export const AvatarDropdown: React.FC<AvatarProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [ref]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === 'escape') {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.body.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const handleClickOutside = (event: MouseEvent) => {
     // @ts-ignore
