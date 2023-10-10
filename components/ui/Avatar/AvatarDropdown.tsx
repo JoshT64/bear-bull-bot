@@ -1,7 +1,6 @@
 'use client';
 
 import './Avatar.scss';
-import Profile from '../../icons/ProfileIcon';
 import ProfileIcon from '../../icons/ProfileIcon';
 import SignOutIcon from '../../icons/SignOutIcon';
 import Button from '../Button';

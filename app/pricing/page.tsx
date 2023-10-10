@@ -13,7 +13,12 @@ export default async function PricingPage() {
     getSubscription()
   ]);
 
-
+  //   useUserStore.setState({
+  //     session,
+  //     products,
+  //     user: session?.user,
+  //     subscription
+  //   });
 
   return (
     <Pricing
