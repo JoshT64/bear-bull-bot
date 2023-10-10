@@ -12,7 +12,7 @@ export default async function PricingPage() {
     getActiveProductsWithPrices(),
     getSubscription()
   ]);
-
+  // Todo:
   //   useUserStore.setState({
   //     session,
   //     products,

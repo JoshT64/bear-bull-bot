@@ -14,6 +14,7 @@ export default function Pricing({
   subscription,
   user
 }: PricingProps) {
+  // Todo:
   // const { products, session, subscription, user } = useUserStore();
 
   // console.log(products, session, subscription, user);
