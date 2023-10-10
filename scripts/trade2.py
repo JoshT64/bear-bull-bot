@@ -147,7 +147,7 @@ if __name__ == '__main__':
 
 # Fetch data and compute RSI
 ticker = "SPY"
-df = yf.download(ticker.strip(), start="2022-01-01",
+df = yf.download(ticker.strip(), start="2023-09-01",
                  end=pd.to_datetime('today').date().strftime('%Y-%m-%d'))
 df['RSI'] = compute_rsi(df)
 bearish_divs, bullish_divs, bearish_hidden_divs, bullish_hidden_divs = find_divergences(
