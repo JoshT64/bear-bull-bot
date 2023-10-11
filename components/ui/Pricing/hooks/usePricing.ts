@@ -1,15 +1,16 @@
+import { useUserStore } from '../../../../store/useUserStore';
 import { postData } from '../../../../utils/helpers';
 import { getStripe } from '../../../../utils/stripe-client';
-import { BillingInterval, Price, PricingProps } from '../types';
+import { BillingInterval, Price } from '../types';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export const usePricing = ({
-  products,
-  user,
-  session,
-  subscription
-}: PricingProps) => {
+export const usePricing = () => {
+  const products = useUserStore((state) => state.products);
+  const user = useUserStore((state) => state.user);
+  const subscription = useUserStore((state) => state.subscription);
+  const session = useUserStore((state) => state.session);
+
   const intervals = Array.from(
     new Set(
       products.flatMap((product) =>
@@ -50,6 +51,10 @@ export const usePricing = ({
     intervals,
     priceIdLoading,
     billingInterval,
-    setBillingInterval
+    setBillingInterval,
+    products,
+    user,
+    subscription,
+    session
   };
 };

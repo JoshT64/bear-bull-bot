@@ -7,37 +7,24 @@ import {
 } from './index';
 import { PricingProps } from './types';
 import { useUserStore } from '@/store/useUserStore';
+import { useEffect } from 'react';
 
-export default function Pricing({
-  products,
-  session,
-  subscription,
-  user
-}: PricingProps) {
-  // Todo:
-  // const { products, session, subscription, user } = useUserStore();
-
-  // console.log(products, session, subscription, user);
+export function Pricing({ products, session, subscription }: PricingProps) {
+  // Setup user store
+  useEffect(() => {
+    useUserStore.setState({
+      session,
+      products,
+      user: session?.user,
+      subscription
+    });
+  }, []);
 
   if (!products.length) return <NoPricingData />;
 
   if (products.length === 1) {
-    return (
-      <SingleProductPricing
-        products={products}
-        session={session}
-        subscription={subscription}
-        user={user}
-      />
-    );
+    return <SingleProductPricing />;
   }
 
-  return (
-    <MultiProductPricing
-      products={products}
-      session={session}
-      subscription={subscription}
-      user={user}
-    />
-  );
+  return <MultiProductPricing />;
 }

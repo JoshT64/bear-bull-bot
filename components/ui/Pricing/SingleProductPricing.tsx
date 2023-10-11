@@ -1,21 +1,9 @@
 import Button from '../Button';
 import { usePricing } from './hooks/usePricing';
-import { PricingProps } from './types';
 
-export const SingleProductPricing = ({
-  products,
-  session,
-  subscription,
-  user
-}: PricingProps) => {
-  const { priceIdLoading, handleCheckout } = usePricing({
-    products,
-    session,
-    subscription,
-    user
-  });
-
-  console.log(products);
+export const SingleProductPricing = () => {
+  const { priceIdLoading, handleCheckout, products, session, subscription } =
+    usePricing();
 
   return (
     <section className="bg-black animate-in">

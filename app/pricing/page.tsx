@@ -3,8 +3,7 @@ import {
   getSubscription,
   getActiveProductsWithPrices
 } from '@/app/supabase-server';
-import Pricing from '@/components/ui/Pricing/Pricing';
-import { useUserStore } from '@/store/useUserStore';
+import { Pricing } from '@/components/ui/Pricing/Pricing';
 
 export default async function PricingPage() {
   const [session, products, subscription] = await Promise.all([
@@ -12,13 +11,6 @@ export default async function PricingPage() {
     getActiveProductsWithPrices(),
     getSubscription()
   ]);
-  // Todo:
-  //   useUserStore.setState({
-  //     session,
-  //     products,
-  //     user: session?.user,
-  //     subscription
-  //   });
 
   return (
     <Pricing

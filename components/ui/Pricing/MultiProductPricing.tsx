@@ -1,27 +1,18 @@
 import { usePricing } from './hooks/usePricing';
-import { PricingProps } from './types';
 import Button from '@/components/ui/Button';
 import cn from 'classnames';
 
-export const MultiProductPricing = ({
-  products,
-  session,
-  subscription,
-  user
-}: PricingProps) => {
-  // Custom hook
+export const MultiProductPricing = () => {
   const {
     setBillingInterval,
     intervals,
     billingInterval,
     priceIdLoading,
-    handleCheckout
-  } = usePricing({
+    handleCheckout,
     products,
-    session,
     subscription,
-    user
-  });
+    session
+  } = usePricing();
 
   return (
     <section className="bg-black animate-in">
