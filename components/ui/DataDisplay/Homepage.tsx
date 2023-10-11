@@ -1,7 +1,5 @@
 import { DataDisplay } from '.';
 import { PricingProps } from '../Pricing/types';
-import { useUserStore } from '@/store/useUserStore';
-import { useEffect } from 'react';
 
 export const Homepage = ({
   products,

@@ -9,10 +9,8 @@ import {
   YAxis
 } from 'recharts';
 
-const data = { chartData, spyChartData };
-
-const mergedData = data.chartData.map((item) => {
-  const matchingItem = data.spyChartData.find(
+const mergedData = chartData.map((item) => {
+  const matchingItem = spyChartData.find(
     (spyItem) => spyItem.name === item.name
   );
 
