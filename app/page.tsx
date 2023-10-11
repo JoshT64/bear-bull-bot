@@ -1,9 +1,9 @@
-import { DataDisplay } from '../components/ui/DataDisplay';
 import {
   getSession,
   getSubscription,
   getActiveProductsWithPrices
 } from '@/app/supabase-server';
+import { Homepage } from '@/components/ui/DataDisplay';
 
 export default async function PricingPage() {
   const [session, products, subscription] = await Promise.all([
@@ -13,7 +13,7 @@ export default async function PricingPage() {
   ]);
 
   return (
-    <DataDisplay
+    <Homepage
       session={session}
       user={session?.user}
       products={products}

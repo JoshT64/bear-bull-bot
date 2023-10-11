@@ -1,5 +1,5 @@
+import Button from '../Button';
 import { usePricing } from './hooks/usePricing';
-import Button from '@/components/ui/Button';
 import cn from 'classnames';
 
 export const MultiProductPricing = () => {
@@ -26,7 +26,8 @@ export const MultiProductPricing = () => {
           </p>
           <div className="relative self-center mt-6 bg-zinc-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800">
             {intervals.includes('month') && (
-              <button
+              <Button
+                variant="slim"
                 onClick={() => setBillingInterval('month')}
                 type="button"
                 className={`${
@@ -35,8 +36,8 @@ export const MultiProductPricing = () => {
                     : 'ml-0.5 relative w-1/2 border border-transparent text-zinc-400'
                 } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
               >
-                Monthly billing
-              </button>
+                Monthly Billing
+              </Button>
             )}
             {intervals.includes('year') && (
               <button
@@ -48,7 +49,7 @@ export const MultiProductPricing = () => {
                     : 'ml-0.5 relative w-1/2 border border-transparent text-zinc-400'
                 } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
               >
-                Yearly billing
+                Yearly Billing
               </button>
             )}
           </div>

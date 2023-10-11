@@ -3,11 +3,11 @@
 import './Avatar.scss';
 import ProfileIcon from '../../icons/ProfileIcon';
 import SignOutIcon from '../../icons/SignOutIcon';
-import Button from '../Button';
 import { Dropdown } from '../Dropdown';
 import SignOutButton from '../Navbar/SignOutButton';
 // @ts-ignore
 import styles from './Avatar.modules.css';
+import Button from '@/components/ui/Button';
 import classNames from 'classnames';
 import { useRouter } from 'next/navigation';
 import React, { useState, useRef, useEffect } from 'react';

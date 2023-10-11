@@ -11,19 +11,26 @@
     "generate-types": "npx supabase gen types typescript --project-id YOUR_PROJECT_ID --schema public > types_db.ts"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
     "@stripe/stripe-js": "^1.53.0",
     "@supabase/auth-helpers-nextjs": "^0.7.0",
     "@supabase/auth-ui-react": "^0.4.2",
     "@supabase/auth-ui-shared": "^0.1.6",
     "@supabase/supabase-js": "^2.23.0",
+    "class-variance-authority": "^0.7.0",
     "classnames": "^2.3.2",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.285.0",
     "next": "13.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-merge-refs": "^2.0.2",
+    "recharts": "^2.8.0",
     "sass": "^1.69.0",
     "stripe": "^12.6.0",
+    "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.3.2",
+    "tailwindcss-animate": "^1.0.7",
     "zustand": "^4.4.3"
   },
   "devDependencies": {

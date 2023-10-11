@@ -1,16 +1,19 @@
 'use client';
 
+import { Container } from '../Container';
 import { PricingProps } from '../Pricing/types';
+import { Charts } from './Charts';
 import { useUserStore } from '@/store/useUserStore';
 import { useEffect } from 'react';
 
 export const DataDisplay = ({
-  products,
   session,
+  products,
+  user,
   subscription
 }: PricingProps) => {
   // Setup user store .. this is being done redundantly
-  //  on this page & on pricing page --
+  // on this page & on pricing page --
   // should look into fetching only once but for now this works
   useEffect(() => {
     useUserStore.setState({
@@ -22,13 +25,17 @@ export const DataDisplay = ({
   }, []);
 
   return (
-    <section className="bg-black animate-in">
-      <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
-        <div className="sm:flex sm:flex-row sm:align-center"></div>
-        <p className="text-center">
-          Data from Python script should be display here
-        </p>
+    <Container className="text-white sm:text-center ">
+      <div className='rounded-xl border bg-card text-card-foreground shadow col-span-4"'>
+        <div className="flex flex-col space-y-1.5 p-6">
+          <h3 className="font-semibold leading-none tracking-tight">
+            Stock Name Or Bull Bot Perf?
+          </h3>
+        </div>
+        <div className="p-6 pt-0">
+          <Charts />
+        </div>
       </div>
-    </section>
+    </Container>
   );
 };
