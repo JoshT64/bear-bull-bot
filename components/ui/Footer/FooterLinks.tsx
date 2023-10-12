@@ -24,12 +24,13 @@ export const FooterLinks = () => {
             </Link>
           </li>
           <li className="py-3 md:py-0 md:pb-4">
-            <Link
+            <a
+              target="_blank"
               href="https://bear-bull-bot.gitbook.io/bear-bull-bot/"
               className="text-white transition duration-150 ease-in-out hover:text-zinc-300"
             >
               Docs
-            </Link>
+            </a>
           </li>
           <li className="py-3 md:py-0 md:pb-4">
             <Link
