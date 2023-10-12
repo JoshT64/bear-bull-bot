@@ -41,7 +41,7 @@ def find_divergences(price, rsi):
 
 def stock_analysis(ticker, last_processed_date=None):
     df = yf.download(ticker.strip(), start="2023-10-03", end=pd.to_datetime(
-        'today').date().strftime('%Y-%m-%d'), interval='15m', progress=False)
+        'today').date().strftime('%Y-%m-%d'), interval='1d', progress=False)
 
     last_date_processed = df.index[0].date()
 
