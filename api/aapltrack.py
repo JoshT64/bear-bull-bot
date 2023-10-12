@@ -1,5 +1,6 @@
-import websocket
 import json
+from http.server import BaseHTTPRequestHandler
+import websocket
 import pandas as pd
 import alpaca_trade_api as tradeapi
 
@@ -32,7 +33,6 @@ def on_message(ws, message):
         df.to_csv('bars_data.csv', index=False)
 
 def on_open(ws):
-    print("WebSocket opened")
     auth_data = {
         "action": "auth",
         "key": API_KEY,
@@ -47,7 +47,12 @@ def on_open(ws):
     }
     ws.send(json.dumps(listen_message))
 
-websocket.enableTrace(True)
-
-ws = websocket.WebSocketApp(BASE_URL, on_open=on_open, on_message=on_message)
-ws.run_forever()
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'application/json')
+        self.end_headers()
+        websocket.enableTrace(True)
+        ws = websocket.WebSocketApp(BASE_URL, on_open=on_open, on_message=on_message)
+        ws.run_forever()
+        self.wfile.write(json.dumps({'status': 'WebSocket connection established'}).encode())
