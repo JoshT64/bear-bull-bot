@@ -38,7 +38,7 @@
 }
 
 .root {
-  @apply inline-flex cursor-pointer items-center justify-center border border-transparent py-4 pl-2 pr-14 text-center font-semibold uppercase leading-6 text-zinc-800 shadow-sm transition duration-150 ease-in-out;
+  @apply inline-flex cursor-pointer items-center justify-center border border-transparent py-4 pl-2 pr-14 text-center font-semibold leading-6 text-zinc-800 shadow-sm transition duration-150 ease-in-out;
 }
 
 .disabled,
