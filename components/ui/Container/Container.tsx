@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 interface ContainerProps extends React.ComponentPropsWithoutRef<'div'> {
-  direction: 'col' | 'row';
+  direction?: 'col' | 'row';
 }
 
 export const Container = ({ children, direction }: ContainerProps) => {

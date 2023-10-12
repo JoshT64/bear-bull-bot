@@ -1,5 +1,6 @@
-import { DataDisplay } from '.';
 import { PricingProps } from '../Pricing/types';
+import { DataDisplay } from './DataDisplay';
+import { Hero } from '@/components/ui/Hero';
 
 export const Homepage = ({
   products,
@@ -9,7 +10,7 @@ export const Homepage = ({
 }: PricingProps) => {
   return (
     <section className="bg-black animate-in">
-      <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
+      <div className="max-w-6xl px-4 py-8 mx-auto sm:py-12 sm:px-6 lg:px-8">
         <div className="sm:flex sm:flex-col sm:align-center">
           {!user && (
             <p className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
@@ -18,7 +19,7 @@ export const Homepage = ({
           )}
           {user && (
             <>
-              <h1 className="pb-2">Dashboard</h1>
+              <Hero />
               <DataDisplay
                 products={products}
                 session={session}
