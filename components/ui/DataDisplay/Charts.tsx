@@ -39,8 +39,8 @@ export const Charts = () => {
           axisLine={false}
           tickFormatter={(value) => `$${value}`}
         />
-        <Line type="monotone" dataKey="BBB" stroke="#8884d8" />
-        <Line type="monotone" dataKey="SPY" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="BBB" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="SPY" stroke="#8884d8" />
         <Tooltip />
         <Legend />
       </LineChart>

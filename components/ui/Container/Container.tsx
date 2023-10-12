@@ -1,9 +1,12 @@
-interface ContainerProps extends React.ComponentPropsWithoutRef<'div'> {}
+import classNames from 'classnames';
 
-export const Container = ({ children }: ContainerProps) => {
-  return (
-    <div className="flex justify-between  flex-col text-center  gap-4 ">
-      {children}
-    </div>
+interface ContainerProps extends React.ComponentPropsWithoutRef<'div'> {
+  direction: 'col' | 'row';
+}
+
+export const Container = ({ children, direction }: ContainerProps) => {
+  const classes = classNames(
+    `flex justify-between text-center gap-4 flex-${direction}`
   );
+  return <div className={classes}>{children}</div>;
 };

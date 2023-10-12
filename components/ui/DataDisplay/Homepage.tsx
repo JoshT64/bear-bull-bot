@@ -17,12 +17,15 @@ export const Homepage = ({
             </p>
           )}
           {user && (
-            <DataDisplay
-              products={products}
-              session={session}
-              user={user}
-              subscription={subscription}
-            />
+            <>
+              <h1 className="pb-2">Dashboard</h1>
+              <DataDisplay
+                products={products}
+                session={session}
+                user={user}
+                subscription={subscription}
+              />
+            </>
           )}
         </div>
       </div>

@@ -1,6 +1,5 @@
 import {
   ProductWithPrices,
-  Subscription,
   SubscriptionWithProduct
 } from '../components/ui/Pricing/types';
 import { Session, User } from '@supabase/supabase-js';

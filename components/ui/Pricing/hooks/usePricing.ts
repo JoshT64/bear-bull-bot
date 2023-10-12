@@ -1,7 +1,7 @@
-import { useUserStore } from '../../../../store/useUserStore';
-import { postData } from '../../../../utils/helpers';
-import { getStripe } from '../../../../utils/stripe-client';
 import { BillingInterval, Price } from '../types';
+import { useUserStore } from '@/store/useUserStore';
+import { postData } from '@/utils/helpers';
+import { getStripe } from '@/utils/stripe-client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
