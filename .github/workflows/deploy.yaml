@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  update:
+  update-types:
     runs-on: ubuntu-latest
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v2.1.5
         with:
           node-version: 16
-      - run: npm run update-types
+      - run: npm run generate-types
       - name: check for file changes
         id: git_status
         run: |
