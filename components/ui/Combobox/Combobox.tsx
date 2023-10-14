@@ -1,5 +1,6 @@
 'use client';
 
+import { Tickers } from '../Homepage';
 import {
   Command,
   CommandGroup,
@@ -9,48 +10,25 @@ import {
   CommandSeparator
 } from '@/components/ui/Command';
 import { Popover, PopoverTrigger } from '@/components/ui/Popover/index';
-import React, { useState } from 'react';
-
-const groups = [
-  {
-    label: 'Stocks',
-    teams: [
-      {
-        label: 'SPY',
-        value: 'SPY'
-      }
-    ]
-  },
-  {
-    label: 'Cryptocurrency',
-    teams: [
-      {
-        label: 'Bitcoin-USD',
-        value: 'BTC-USD'
-      },
-      {
-        label: 'Ethereum',
-        value: 'ETH-USD'
-      }
-    ]
-  }
-];
-
-type Team = (typeof groups)[number]['teams'][number];
+import React, { useEffect, useState } from 'react';
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
 >;
 
-interface TeamSwitcherProps extends PopoverTriggerProps {}
+interface TeamSwitcherProps extends PopoverTriggerProps {
+  stocks: { label: string; tickers: { label: string; value: string }[] }[];
+}
 
-export function Combobox({ className }: TeamSwitcherProps) {
+export function Combobox({
+  className,
+  placeholder,
+  stocks
+}: TeamSwitcherProps) {
   const [open, setOpen] = useState(false);
-  const inputRef = React.useRef(null); // Create a ref
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const [selectedTeam, setSelectedTeam] = useState<Team>(groups[0].teams[0]);
-
-  console.log(open);
+  const [selectedTicker, setSelectedTicker] = useState<Tickers>();
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -63,31 +41,22 @@ export function Combobox({ className }: TeamSwitcherProps) {
             onFocus={() => setOpen(true)}
             onBlur={() => setOpen(false)}
             // @Todo: Add command open like CMD + P dialog
-            placeholder="Search stocks..."
+            placeholder={placeholder}
           />
-          {/* <CommandEmpty>No stock results found.</CommandEmpty> */}
-          {groups.map(
-            (group) =>
+          {stocks.map(
+            (stock) =>
               open && (
-                <CommandGroup key={group.label} heading={group.label}>
-                  {group.teams.map((team) => (
+                <CommandGroup key={stock.label} heading={stock.label}>
+                  {stock.tickers.map((ticker) => (
                     <CommandItem
-                      key={team.value}
+                      key={ticker.value}
                       onSelect={() => {
-                        setSelectedTeam(team);
+                        setSelectedTicker(ticker);
                         setOpen(false);
                       }}
                       className="text-sm"
                     >
-                      {team.label}
-                      {/* <CheckIcon
-                        className={cn(
-                          'ml-auto h-4 w-4',
-                          selectedTeam.value === team.value
-                            ? 'opacity-100'
-                            : 'opacity-0'
-                        )}
-                      /> */}
+                      {ticker.label}
                     </CommandItem>
                   ))}
                 </CommandGroup>
@@ -99,3 +68,21 @@ export function Combobox({ className }: TeamSwitcherProps) {
     </Popover>
   );
 }
+
+// Todo: =>
+
+// useEffect(() => {
+//   const down = (e: KeyboardEvent) => {
+//     if (e.key === 'j' && (e.metaKey || e.ctrlKey)) {
+//       e.preventDefault();
+//       setOpen((open) => !open);
+//       // input ref focus doesn't work :(
+//       if (inputRef && inputRef.current) {
+//         inputRef.current.focus();
+//       }
+//     }
+//   };
+
+//   document.addEventListener('keydown', down);
+//   return () => document.removeEventListener('keydown', down);
+// }, []);

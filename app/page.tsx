@@ -4,7 +4,7 @@ import {
   getSubscription,
   getActiveProductsWithPrices
 } from '@/app/supabase-server';
-import { Homepage } from '@/components/ui/DataDisplay';
+import { Homepage } from '@/components/ui/Homepage';
 import { Suspense } from 'react';
 
 export default async function PricingPage() {

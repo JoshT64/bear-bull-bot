@@ -1,3 +1,5 @@
+'use client';
+
 import { Charts } from '../Charts';
 import { SelectTicker } from '../SelectTicker';
 

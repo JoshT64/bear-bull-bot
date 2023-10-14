@@ -4,12 +4,7 @@ import { Container } from '../Container';
 import { PricingProps } from '../Pricing/types';
 import { LineChart } from './components';
 
-export const DataDisplay = ({
-  session,
-  products,
-  user,
-  subscription
-}: PricingProps) => {
+export const DataDisplay = ({}: PricingProps) => {
   // Setup user store .. this is being done redundantly
   // on this page & on pricing page --
   // should look into fetching only once but for now this works

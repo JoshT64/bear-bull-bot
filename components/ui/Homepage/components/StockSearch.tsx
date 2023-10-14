@@ -3,31 +3,35 @@
 import { Combobox } from '@/components/ui/Combobox';
 import { useEffect, useState } from 'react';
 
+export type Tickers = (typeof stocks)[number]['tickers'][number];
+
+const stocks = [
+  {
+    label: 'Stocks',
+    tickers: [
+      {
+        label: 'SPY',
+        value: 'SPY'
+      }
+    ]
+  },
+  {
+    label: 'Cryptocurrency',
+    tickers: [
+      {
+        label: 'Bitcoin-USD',
+        value: 'BTC-USD'
+      },
+      {
+        label: 'Ethereum',
+        value: 'ETH-USD'
+      }
+    ]
+  }
+];
+
 export const StockSearch = () => {
   //   const [suggestions, setSuggestions] = useState([]);
-
-  const suggestions = [
-    {
-      value: 'next.js',
-      label: 'Next.js'
-    },
-    {
-      value: 'sveltekit',
-      label: 'SvelteKit'
-    },
-    {
-      value: 'nuxt.js',
-      label: 'Nuxt.js'
-    },
-    {
-      value: 'remix',
-      label: 'Remix'
-    },
-    {
-      value: 'astro',
-      label: 'Astro'
-    }
-  ];
 
   useEffect(() => {
     // Fetch stock tickers data from an API and update the suggestions state
@@ -36,7 +40,7 @@ export const StockSearch = () => {
     // });
   }, []);
 
-  return <Combobox></Combobox>;
+  return <Combobox placeholder="Search stocks..." stocks={stocks}></Combobox>;
 };
 
 // Assume fetchStockTickers and fetchSuggestions are functions that fetch data from an API.
