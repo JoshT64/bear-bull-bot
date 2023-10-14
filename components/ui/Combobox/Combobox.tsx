@@ -10,6 +10,7 @@ import {
   CommandSeparator
 } from '@/components/ui/Command';
 import { Popover, PopoverTrigger } from '@/components/ui/Popover/index';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
@@ -25,6 +26,8 @@ export function Combobox({
   placeholder,
   stocks
 }: TeamSwitcherProps) {
+  const router = useRouter();
+
   const [open, setOpen] = useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -43,25 +46,25 @@ export function Combobox({
             // @Todo: Add command open like CMD + P dialog
             placeholder={placeholder}
           />
-          {stocks.map(
-            (stock) =>
-              open && (
-                <CommandGroup key={stock.label} heading={stock.label}>
-                  {stock.tickers.map((ticker) => (
-                    <CommandItem
-                      key={ticker.value}
-                      onSelect={() => {
-                        setSelectedTicker(ticker);
-                        setOpen(false);
-                      }}
-                      className="text-sm"
-                    >
-                      {ticker.label}
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              )
-          )}
+          {open &&
+            stocks.map((stock) => (
+              <CommandGroup key={stock.label} heading={stock.label}>
+                {stock.tickers.map((ticker) => (
+                  <CommandItem
+                    key={ticker.value}
+                    onSelect={() => {
+                      console.log('ON select');
+                      router.push(`/selectedTicker/${ticker.value}`);
+                      setSelectedTicker(ticker);
+                      setOpen(false);
+                    }}
+                    className="text-sm"
+                  >
+                    {ticker.label}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            ))}
         </CommandList>
         <CommandSeparator />
       </Command>
