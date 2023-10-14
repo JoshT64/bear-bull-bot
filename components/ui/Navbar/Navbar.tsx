@@ -1,7 +1,10 @@
 import { AvatarDropdown } from '../Avatar';
+import { Combobox } from '../Combobox';
+import { StockSearch } from '../DataDisplay/components/StockSearch';
 import s from './Navbar.module.css';
 import { createServerSupabaseClient } from '@/app/supabase-server';
 import Logo from '@/components/icons/Logo';
+import { Input } from '@/components/ui/Input';
 import Link from 'next/link';
 
 export default async function Navbar() {
@@ -32,7 +35,8 @@ export default async function Navbar() {
               )}
             </nav>
           </div>
-          <div className="flex justify-end flex-1 space-x-8 place-self-center">
+          <div className="flex justify-end  space-x-8 place-self-center items-center">
+            <StockSearch />
             {user ? (
               <AvatarDropdown
                 src={
