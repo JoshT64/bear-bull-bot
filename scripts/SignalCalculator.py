@@ -58,4 +58,4 @@ def calculateSignal(TickerIn):
     if shares > 0:
         trade_value = shares * current_price
         gain_loss = trade_value - (shares * last_trade_price)
-    return signal
+    return signal, current_price
