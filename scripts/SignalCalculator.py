@@ -1,8 +1,10 @@
 import yfinance as yf
 import numpy as np
 import pandas as pd
-import RsiComputer
-import DivergenceFinder
+import sys
+sys.path.append("../scripts") 
+from scripts import RsiComputer
+from scripts import DivergenceFinder
 
 #TODO Remove portfolio variables & functionality (shares, balance, etc)
 def calculateSignal(TickerIn):

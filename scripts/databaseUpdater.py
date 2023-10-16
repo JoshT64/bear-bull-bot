@@ -1,6 +1,7 @@
 import datetime
-import os
-import SignalCalculator
+import sys
+sys.path.append("../scripts") 
+from scripts import SignalCalculator
 from supabase import create_client, Client
 def update(tickerIn, dbURL, dbKey):
     supabase: Client = create_client(dbURL, dbKey)
