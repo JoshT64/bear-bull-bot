@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 import sys
+sys.path.append("../scripts") 
 from scripts import updateAllTickers
 class handler(BaseHTTPRequestHandler):
  
