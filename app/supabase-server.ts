@@ -3,8 +3,9 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
 
-export const createServerSupabaseClient = () =>
-  createServerComponentClient<Database>({ cookies });
+export const createServerSupabaseClient = cache(() =>
+  createServerComponentClient<Database>({ cookies })
+);
 
 export async function getSession() {
   const supabase = createServerSupabaseClient();
@@ -55,9 +56,8 @@ export const getTickers = async () => {
   try {
     const { data: tickers, error } = await supabase.from('tickers').select('*');
 
-    console.log('Ticker:', tickers);
     if (error) {
-      console.log(error);
+      console.error(error);
     }
     return tickers;
   } catch (error) {

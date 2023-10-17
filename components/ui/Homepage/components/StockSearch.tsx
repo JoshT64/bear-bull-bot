@@ -1,9 +1,16 @@
 'use client';
 
+import { Tickers } from '../../Pricing/types';
 import { Combobox } from '@/components/ui/Combobox';
 import { useEffect, useState } from 'react';
 
-export type Tickers = (typeof stocks)[number]['tickers'][number];
+//  {
+//   id: 1,
+//   timestamp: '2023-10-11T20:21:04.207135+00:00',
+//   ticker: 'SPY',
+//   price: 435.640014648438,
+//   signal: 'BUY'
+// },
 
 const stocks = [
   {
@@ -30,6 +37,6 @@ const stocks = [
   }
 ];
 
-export const StockSearch = () => {
-  return <Combobox placeholder="Search stocks..." stocks={stocks}></Combobox>;
+export const StockSearch = ({ tickers }: Tickers) => {
+  return <Combobox placeholder="Search stocks..." tickers={tickers}></Combobox>;
 };

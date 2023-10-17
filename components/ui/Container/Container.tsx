@@ -6,7 +6,7 @@ interface ContainerProps extends React.ComponentPropsWithoutRef<'div'> {
 
 export const Container = ({ children, direction }: ContainerProps) => {
   const classes = classNames(
-    `flex justify-between text-center gap-4 flex-${direction}`
+    `flex  text-center gap-5 flex-${direction} place-content-center`
   );
   return <div className={classes}>{children}</div>;
 };

@@ -1,6 +1,7 @@
 'use client';
 
-import { Tickers } from '../Homepage';
+import { useOnClickAway } from '../../utils/useOnClickAway';
+import { Ticker } from '../Pricing/types';
 import {
   Command,
   CommandGroup,
@@ -11,81 +12,77 @@ import {
 } from '@/components/ui/Command';
 import { Popover, PopoverTrigger } from '@/components/ui/Popover/index';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-type PopoverTriggerProps = React.ComponentPropsWithoutRef<
-  typeof PopoverTrigger
->;
-
-interface TeamSwitcherProps extends PopoverTriggerProps {
-  stocks: { label: string; tickers: { label: string; value: string }[] }[];
+interface ComboboxProps {
+  className?: string;
+  placeholder?: string;
+  tickers: Ticker[] | null;
 }
 
-export function Combobox({
-  className,
-  placeholder,
-  stocks
-}: TeamSwitcherProps) {
+export function Combobox({ placeholder, tickers }: ComboboxProps) {
   const router = useRouter();
-
   const [open, setOpen] = useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const comboboxRef = React.useRef<HTMLDivElement>(null);
 
-  const [selectedTicker, setSelectedTicker] = useState<Tickers>();
+  useOnClickAway(comboboxRef, () => {
+    if (open) {
+      setOpen(false);
+    }
+  });
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild></PopoverTrigger>
-      {/* @ts-ignore */}
-      <Command open={open}>
-        <CommandList>
-          <CommandInput
-            ref={inputRef}
-            onFocus={() => setOpen(true)}
-            onBlur={() => setOpen(false)}
-            // @Todo: Add command open like CMD + P dialog
-            placeholder={placeholder}
-          />
-          {open &&
-            stocks.map((stock) => (
-              <CommandGroup key={stock.label} heading={stock.label}>
-                {stock.tickers.map((ticker) => (
+    <div ref={comboboxRef}>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild></PopoverTrigger>
+        {/* @ts-ignore */}
+        <Command open={open}>
+          <CommandList>
+            <CommandInput
+              ref={inputRef}
+              onFocus={() => setOpen(true)}
+              placeholder={placeholder}
+            />
+            {open && (
+              <CommandGroup heading="Stocks">
+                {tickers?.map((stock) => (
                   <CommandItem
-                    key={ticker.value}
+                    key={stock.ticker}
                     onSelect={() => {
-                      console.log('ON select');
-                      router.push(`/selectedTicker/${ticker.value}`);
-                      setSelectedTicker(ticker);
+                      router.push(`/symbol/${stock.ticker}`);
                       setOpen(false);
                     }}
                     className="text-sm"
                   >
-                    {ticker.label}
+                    {stock.ticker}
                   </CommandItem>
                 ))}
               </CommandGroup>
-            ))}
-        </CommandList>
-        <CommandSeparator />
-      </Command>
-    </Popover>
+            )}
+          </CommandList>
+          <CommandSeparator />
+        </Command>
+      </Popover>
+    </div>
   );
 }
 
-// Todo: =>
-
 // useEffect(() => {
-//   const down = (e: KeyboardEvent) => {
+//   const handleKeyDown = (e: KeyboardEvent) => {
 //     if (e.key === 'j' && (e.metaKey || e.ctrlKey)) {
-//       e.preventDefault();
-//       setOpen((open) => !open);
-//       // input ref focus doesn't work :(
-//       if (inputRef && inputRef.current) {
-//         inputRef.current.focus();
+//       if (isFocused) {
+//         console.log(isFocused);
+//         (inputRef?.current?.lastChild as HTMLInputElement).blur();
+//         setIsFocused(false);
+//       } else {
+//         console.log('set', isFocused);
+//         (inputRef?.current?.lastChild as HTMLInputElement)?.focus();
+//         setIsFocused(true);
 //       }
 //     }
 //   };
 
-//   document.addEventListener('keydown', down);
-//   return () => document.removeEventListener('keydown', down);
+//   document.addEventListener('keydown', handleKeyDown);
+//   return () => document.removeEventListener('keydown', handleKeyDown);
 // }, []);

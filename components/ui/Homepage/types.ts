@@ -1,8 +1,4 @@
-import {
-  ProductWithPrices,
-  SubscriptionWithProduct,
-  Tickers
-} from '../Pricing/types';
+import { ProductWithPrices, SubscriptionWithProduct } from '../Pricing/types';
 import { Session, User } from '@supabase/supabase-js';
 
 export interface HomepageProps {
@@ -10,5 +6,4 @@ export interface HomepageProps {
   user: User | null | undefined;
   products: ProductWithPrices[];
   subscription: SubscriptionWithProduct | null;
-  tickers: Tickers[] | null;
 }

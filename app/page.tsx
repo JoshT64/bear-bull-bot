@@ -9,14 +9,11 @@ import { Homepage } from '@/components/ui/Homepage';
 import { Suspense } from 'react';
 
 export default async function PricingPage() {
-  const [session, products, subscription, tickers] = await Promise.all([
+  const [session, products, subscription] = await Promise.all([
     getSession(),
     getActiveProductsWithPrices(),
-    getSubscription(),
-    getTickers()
+    getSubscription()
   ]);
-
-  console.log(tickers);
 
   return (
     <Suspense fallback={<Loading />}>
@@ -25,7 +22,6 @@ export default async function PricingPage() {
         user={session?.user}
         products={products}
         subscription={subscription}
-        tickers={tickers}
       />
     </Suspense>
   );
