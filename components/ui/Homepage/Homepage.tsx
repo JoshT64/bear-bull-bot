@@ -1,5 +1,6 @@
 import { PricingProps } from '../Pricing/types';
 import { DataDisplay } from './DataDisplay';
+import { HomepageProps } from './types';
 import { Hero } from '@/components/ui/Hero';
 import Link from 'next/link';
 
@@ -9,7 +10,7 @@ export const Homepage = ({
   subscription,
   user,
   tickers
-}: PricingProps) => {
+}: HomepageProps) => {
   console.log('tickers', tickers);
   return (
     <section className="bg-black animate-in">

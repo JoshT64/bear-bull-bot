@@ -21,7 +21,6 @@ export interface PricingProps {
   user: User | null | undefined;
   products: ProductWithPrices[];
   subscription: SubscriptionWithProduct | null;
-  tickers: Tickers[] | null;
 }
 
 export type BillingInterval = 'lifetime' | 'year' | 'month';
