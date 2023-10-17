@@ -3,9 +3,8 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
 
-export const createServerSupabaseClient = cache(() =>
-  createServerComponentClient<Database>({ cookies })
-);
+export const createServerSupabaseClient = () =>
+  createServerComponentClient<Database>({ cookies });
 
 export async function getSession() {
   const supabase = createServerSupabaseClient();
@@ -49,6 +48,23 @@ export async function getSubscription() {
     return null;
   }
 }
+
+export const getTickers = async () => {
+  const supabase = createServerSupabaseClient();
+
+  try {
+    const { data: tickers, error } = await supabase.from('tickers').select('*');
+
+    console.log('Ticker:', tickers);
+    if (error) {
+      console.log(error);
+    }
+    return tickers;
+  } catch (error) {
+    console.error('Error:', error);
+    return null;
+  }
+};
 
 export const getActiveProductsWithPrices = async () => {
   const supabase = createServerSupabaseClient();

@@ -174,6 +174,30 @@ export interface Database {
           }
         ]
       }
+      tickers: {
+        Row: {
+          id: number
+          price: number
+          signal: Database["public"]["Enums"]["signal"]
+          ticker: string
+          timestamp: string
+        }
+        Insert: {
+          id?: number
+          price: number
+          signal?: Database["public"]["Enums"]["signal"]
+          ticker: string
+          timestamp: string
+        }
+        Update: {
+          id?: number
+          price?: number
+          signal?: Database["public"]["Enums"]["signal"]
+          ticker?: string
+          timestamp?: string
+        }
+        Relationships: []
+      }
       users: {
         Row: {
           avatar_url: string | null
@@ -181,6 +205,7 @@ export interface Database {
           full_name: string | null
           id: string
           payment_method: Json | null
+          Tickers: Json
         }
         Insert: {
           avatar_url?: string | null
@@ -188,6 +213,7 @@ export interface Database {
           full_name?: string | null
           id: string
           payment_method?: Json | null
+          Tickers?: Json
         }
         Update: {
           avatar_url?: string | null
@@ -195,6 +221,7 @@ export interface Database {
           full_name?: string | null
           id?: string
           payment_method?: Json | null
+          Tickers?: Json
         }
         Relationships: [
           {
@@ -215,6 +242,7 @@ export interface Database {
     Enums: {
       pricing_plan_interval: "day" | "week" | "month" | "year"
       pricing_type: "one_time" | "recurring"
+      signal: "BUY" | "SELL" | "HOLD" | "STRONG BUY" | "STRONG SELL"
       subscription_status:
         | "trialing"
         | "active"

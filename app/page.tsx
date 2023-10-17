@@ -2,17 +2,21 @@ import Loading from '@/app/loading';
 import {
   getSession,
   getSubscription,
-  getActiveProductsWithPrices
+  getActiveProductsWithPrices,
+  getTickers
 } from '@/app/supabase-server';
 import { Homepage } from '@/components/ui/Homepage';
 import { Suspense } from 'react';
 
 export default async function PricingPage() {
-  const [session, products, subscription] = await Promise.all([
+  const [session, products, subscription, tickers] = await Promise.all([
     getSession(),
     getActiveProductsWithPrices(),
-    getSubscription()
+    getSubscription(),
+    getTickers()
   ]);
+
+  console.log(tickers);
 
   return (
     <Suspense fallback={<Loading />}>
