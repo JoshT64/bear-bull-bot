@@ -4,7 +4,7 @@ import { Container } from '../Container';
 import { PricingProps } from '../Pricing/types';
 import { LineChart } from './components';
 
-export const DataDisplay = ({}: PricingProps) => {
+export const DataDisplay = ({ tickers }: PricingProps) => {
   // Setup user store .. this is being done redundantly
   // on this page & on pricing page --
   // should look into fetching only once but for now this works
@@ -19,7 +19,7 @@ export const DataDisplay = ({}: PricingProps) => {
   //     subscription
   //   });
   // }, []);
-
+  console.log('tickers', tickers);
   return (
     <Container direction="row" className="text-white sm:text-center ">
       <LineChart />

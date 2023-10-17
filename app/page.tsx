@@ -25,6 +25,7 @@ export default async function PricingPage() {
         user={session?.user}
         products={products}
         subscription={subscription}
+        tickers={tickers}
       />
     </Suspense>
   );
