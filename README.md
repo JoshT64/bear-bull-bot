@@ -1,6 +1,6 @@
 # Bear Bull Bot Docs WIP
 
-- Trading with data
+- Trading with data.
 
 ## Steps to run repo locally
 

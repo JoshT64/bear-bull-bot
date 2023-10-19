@@ -2,9 +2,10 @@ import Loading from '@/app/loading';
 import {
   getSession,
   getSubscription,
-  getActiveProductsWithPrices
+  getActiveProductsWithPrices,
+  getTickers
 } from '@/app/supabase-server';
-import { Homepage } from '@/components/ui/DataDisplay';
+import { Homepage } from '@/components/ui/Homepage';
 import { Suspense } from 'react';
 
 export default async function PricingPage() {

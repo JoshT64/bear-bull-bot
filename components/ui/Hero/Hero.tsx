@@ -7,7 +7,7 @@ export const Hero = () => {
         Bear Bull Bot
       </h1>
       <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-        Stop trading with emotions and start trading with data
+        Stop trading with emotions and start trading with data.
       </p>
     </>
   );

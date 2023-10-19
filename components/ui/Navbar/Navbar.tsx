@@ -1,7 +1,11 @@
 import { AvatarDropdown } from '../Avatar';
+import { Combobox } from '../Combobox';
 import s from './Navbar.module.css';
 import { createServerSupabaseClient } from '@/app/supabase-server';
+import { getTickers } from '@/app/supabase-server';
 import Logo from '@/components/icons/Logo';
+import { StockSearch } from '@/components/ui/Homepage/';
+import { Input } from '@/components/ui/Input';
 import Link from 'next/link';
 
 export default async function Navbar() {
@@ -9,6 +13,8 @@ export default async function Navbar() {
   const {
     data: { user }
   } = await supabase.auth.getUser();
+
+  const [tickers] = await Promise.all([getTickers()]);
 
   return (
     <nav className={s.root}>
@@ -32,13 +38,18 @@ export default async function Navbar() {
               )}
             </nav>
           </div>
-          <div className="flex justify-end flex-1 space-x-8 place-self-center">
+          <div className="flex justify-end  space-x-8 place-self-center items-center">
             {user ? (
-              <AvatarDropdown
-                src={
-                  user?.user_metadata.picture || user?.user_metadata.avatar_url
-                }
-              />
+              <>
+                <StockSearch tickers={tickers} />
+
+                <AvatarDropdown
+                  src={
+                    user?.user_metadata.picture ||
+                    user?.user_metadata.avatar_url
+                  }
+                />
+              </>
             ) : (
               <Link href="/signin" className={s.link}>
                 Sign in

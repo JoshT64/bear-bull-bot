@@ -4,6 +4,11 @@ import { Session, User } from '@supabase/supabase-js';
 export type Subscription = Database['public']['Tables']['subscriptions']['Row'];
 export type Product = Database['public']['Tables']['products']['Row'];
 export type Price = Database['public']['Tables']['prices']['Row'];
+export type Ticker = Database['public']['Tables']['tickers']['Row'];
+export type Tickers = {
+  tickers: Ticker[] | null;
+};
+
 export interface ProductWithPrices extends Product {
   prices: Price[];
 }

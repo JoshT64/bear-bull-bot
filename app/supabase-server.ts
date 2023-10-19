@@ -50,6 +50,22 @@ export async function getSubscription() {
   }
 }
 
+export const getTickers = async () => {
+  const supabase = createServerSupabaseClient();
+
+  try {
+    const { data: tickers, error } = await supabase.from('tickers').select('*');
+
+    if (error) {
+      console.error(error);
+    }
+    return tickers;
+  } catch (error) {
+    console.error('Error:', error);
+    return null;
+  }
+};
+
 export const getActiveProductsWithPrices = async () => {
   const supabase = createServerSupabaseClient();
   const { data, error } = await supabase
