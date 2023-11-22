@@ -17,6 +17,7 @@ const meta = {
 };
 
 export const metadata = {
+  metadataBase: new URL('http://localhost:3000'),
   title: meta.title,
   description: meta.description,
   cardImage: meta.cardImage,
