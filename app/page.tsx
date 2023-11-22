@@ -2,8 +2,7 @@ import Loading from '@/app/loading';
 import {
   getSession,
   getSubscription,
-  getActiveProductsWithPrices,
-  getTickers
+  getActiveProductsWithPrices
 } from '@/app/supabase-server';
 import { Homepage } from '@/components/ui/Homepage';
 import { Suspense } from 'react';
