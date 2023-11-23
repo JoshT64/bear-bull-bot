@@ -2,6 +2,7 @@ import sys
 sys.path.append("../scripts") 
 from scripts import TickerIngest
 from scripts import databaseUpdater
+from scripts import RsiComputer
 import os
 def updateAll():
     env_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),".env")
