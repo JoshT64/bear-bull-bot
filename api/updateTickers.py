@@ -2,6 +2,8 @@ from http.server import BaseHTTPRequestHandler
 import sys
 sys.path.append("../scripts") 
 from scripts import updateAllTickers
+from scripts import RsiComputer
+
 class handler(BaseHTTPRequestHandler):
  
     def do_GET(self):
