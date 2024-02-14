@@ -14,7 +14,7 @@ export const Homepage = ({
     <section className="bg-black animate-in">
       <div className="max-w-6xl px-4 py-8 mx-auto sm:py-12 sm:px-6 lg:px-8">
         <div className="sm:flex sm:flex-col sm:align-center">
-          {!user && (
+          {/* {!user && (
             <div className="text-4xl pt-12 font-extrabold text-white sm:text-center sm:text-6xl">
               <p className="mb-12">
                 You must be logged in to see Dashboard and Stock statistics.
@@ -26,9 +26,9 @@ export const Homepage = ({
                 Sign in
               </Link>
             </div>
-          )}
+          )} */}
 
-          {user && (
+          {!user && (
             <>
               <Hero />
               <DataDisplay
